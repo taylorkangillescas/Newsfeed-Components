@@ -103,21 +103,30 @@ const data = [
     <span class="expandButton">+</span>
   </div>
   */
-function articleMaker(data) { // created function and elements/classes
-  const article = document.createElement('div').classList.add("article","article-open");
+function articleMaker(data) { // created function and elements
+  const article = document.createElement('div')
   const title = document.createElement('h2');
+  const date = document.createElement('p');
   const paragraph1 = document.createElement('p');
   const paragraph2 = document.createElement('p');
   const paragraph3 = document.createElement('p');
-  const button = document.createElement('span').classList.add("expandButton");
+  const button = document.createElement('span')
+
+  // creating classes 
+  article.classList.add("article");
+  article.classList.add("date");
+  button.classList.add("expandButton");
+  
 
   article.appendChild(title); // appending all children to article (div parent element)
+  article.appendChild(date);
   article.appendChild(paragraph1);
   article.appendChild(paragraph2);
   article.appendChild(paragraph3);
   article.appendChild(button);
 
   title.textContent = data.title; // adding the text content
+  date.textContent = data.date;
   paragraph1.textContent = data.firstParagraph;
   paragraph2.textContent = data.secondParagraph;
   paragraph3.textContent = data.thirdParagraph;
@@ -131,8 +140,10 @@ function articleMaker(data) { // created function and elements/classes
 return article;
 }
 
-let articles = document.querySelector(".articles"); //selecting articles class from html
+
+console.log(articleMaker)
 data.forEach( addArticles => { // creating for loop called addArticles that pulls from data to iterate through each object
+  const articles = document.querySelector(".articles"); //selecting articles class from html
   articles.appendChild(articleMaker(addArticles)) // appending the articles to .articles by invoking function articleMaker 
 })
 
@@ -142,15 +153,3 @@ data.forEach( addArticles => { // creating for loop called addArticles that pull
 
 
 
-/*
-  Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
-  This listener should toggle the class 'article-open' on div.article.
-
-  Step 3: Don't forget to return something from your function!
-
-  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
-  to create a div.article element and append it to the DOM inside div.articles (see index.html).
-
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
-  Refresh the page to see the new article.
-*/
